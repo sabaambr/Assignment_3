@@ -9,12 +9,13 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     endmsg = "\r\n.\r\n"
 
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
+    mailserver = '127.0.0.1'
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     clientSocket = socket(AF_INET, SOCK_STREAM)
 
-    clientSocket.connect((mailserver, port))
+    clientSocket.connect((mailserver, 1025))
 
-    recv = clientSocket.recv(1024).decode()
+    #recv = clientSocket.recv(1024).decode()
     #print(recv)
     #if recv[:3] != '220':
         #print('220 reply not received from server.')
