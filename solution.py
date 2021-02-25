@@ -4,16 +4,16 @@
 from socket import *
 
 
-def smtp_client(port=1025, mailServer='127.0.0.1'):
+def smtp_client(port=1025, mailserver='127.0.0.1'):
     msg = "\r\n My message"
     endmsg = "\r\n.\r\n"
 
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
-    mailServer = 'smtp.nyu.edu'
+    mailserver = 'smtp.nyu.edu'
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     clientSocket = socket(AF_INET, SOCK_STREAM)
 
-    clientSocket.connect((mailServer, 25))
+    clientSocket.connect((mailserver, 25))
 
     recv = clientSocket.recv(1024).decode()
     #print(recv)
