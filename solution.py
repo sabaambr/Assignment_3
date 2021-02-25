@@ -13,14 +13,14 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     clientSocket = socket(AF_INET, SOCK_STREAM)
 
     clientSocket.connect((mailserver, port))
-    #recv = clientSocket.recv(1024).decode()
-    #print(recv)
+    recv = clientSocket.recv(1024).decode()
+    ##print(recv)
     #if recv[:3] != '220':
         #print('220 reply not received from server.')
     #Send HELO command and print server response.
     heloCommand = 'HELO Alice\r\n'
     clientSocket.send(heloCommand.encode())
-    #recv1 = clientSocket.recv(1024).decode()
+    recv1 = clientSocket.recv(1024).decode()
     #print(recv1)
     #if recv1[:3] != '250':
         #print('250 reply not received from server.')
@@ -28,27 +28,31 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     # Send MAIL FROM command and print server response.
     mailFromCommand = 'MAIL FROM: <sabaambr@gmail.com>\r\n'
     clientSocket.send(mailFromCommand)
+    recv1 = clientSocket.recv(1024).decode()
 
     # Send RCPT TO command and print server response.
     rcptToCommad = 'RCPT TO: <sabaambr@gmail.com>\r\n'
     clientSocket.send(rcptToCommad)
+    recv1 = clientSocket.recv(1024).decode()
 
     # Send DATA command and print server response.
     dataCommand = 'DATA\r\n'
     clientSocket.send(dataCommand)
+    recv1 = clientSocket.recv(1024).decode()
 
     # Send message data.
     dataMessage = 'DATA\r\n'
     clientSocket.send(dataMessage)
+    recv1 = clientSocket.recv(1024).decode()
 
     # Message ends with a single period.
     clientSocket.send(endmsg)
-    #recv6 = clientSocket.recv(1024).decode()
+    recv1 = clientSocket.recv(1024).decode()
 
     # Send QUIT command and get server response.
     quitCommand = 'QUIT\r\n'
     clientSocket.send(quitCommand)
-    #recv7 = clientSocket.recv(1024).decode()
+    recv1 = clientSocket.recv(1024).decode()
 
 
 if __name__ == '__main__':
