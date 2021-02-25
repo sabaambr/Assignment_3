@@ -9,14 +9,15 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
     endmsg = "\r\n.\r\n"
 
     # Choose a mail server (e.g. Google mail server) if you want to verify the script beyond GradeScope
+
     # Create socket called clientSocket and establish a TCP connection with mailserver and port
     clientSocket = socket(AF_INET, SOCK_STREAM)
 
     clientSocket.connect((mailserver, port))
     recv = clientSocket.recv(1024).decode()
-    print(recv)
-    if recv[:3] != '220':
-        print('220 reply not received from server.')
+    #print(recv)
+    #if recv[:3] != '220':
+        #print('220 reply not received from server.')
     #Send HELO command and print server response.
     heloCommand = 'HELO Alice\r\n'
     clientSocket.send(heloCommand.encode())
@@ -26,33 +27,33 @@ def smtp_client(port=1025, mailserver='127.0.0.1'):
         #print('250 reply not received from server.')
 
     # Send MAIL FROM command and print server response.
-    mailFromCommand = 'MAIL FROM: <sabaambr@gmail.com>\r\n'
+    mailFromCommand = 'MAIL FROM: <sabaambr@gmail.com>\r\n'.encode()
     clientSocket.send(mailFromCommand)
-    recv1 = clientSocket.recv(1024).decode()
+    recv2 = clientSocket.recv(1024).decode()
 
     # Send RCPT TO command and print server response.
-    rcptToCommad = 'RCPT TO: <sabaambr@gmail.com>\r\n'
+    rcptToCommad = 'RCPT TO: <sabaambr@gmail.com>\r\n'.encode()
     clientSocket.send(rcptToCommad)
-    recv1 = clientSocket.recv(1024).decode()
+    recv3 = clientSocket.recv(1024).decode()
 
     # Send DATA command and print server response.
-    dataCommand = 'DATA\r\n'
+    dataCommand = 'DATA\r\n'.encode()
     clientSocket.send(dataCommand)
-    recv1 = clientSocket.recv(1024).decode()
+    recv4 = clientSocket.recv(1024).decode()
 
     # Send message data.
-    dataMessage = 'DATA\r\n'
+    dataMessage = 'DATA\r\n'.encode()
     clientSocket.send(dataMessage)
-    recv1 = clientSocket.recv(1024).decode()
+    recv5 = clientSocket.recv(1024).decode()
 
     # Message ends with a single period.
     clientSocket.send(endmsg)
-    recv1 = clientSocket.recv(1024).decode()
+    recv6 = clientSocket.recv(1024).decode()
 
     # Send QUIT command and get server response.
-    quitCommand = 'QUIT\r\n'
+    quitCommand = 'QUIT\r\n'.encode()
     clientSocket.send(quitCommand)
-    recv1 = clientSocket.recv(1024).decode()
+    recv7 = clientSocket.recv(1024).decode()
 
 
 if __name__ == '__main__':
